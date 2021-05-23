@@ -4,7 +4,8 @@
   "description": "system that takes and validates orders placed",
   "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
   },
   "homepage": "https://github.com/vladislavglad/Menu-Ordering-System#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "open": "^8.1.0"
   },
   "devDependencies": {
     "jest": "^26.6.3"

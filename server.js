@@ -1,6 +1,7 @@
 const express = require("express");
+const open = require("open");
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
 const Breakfast = require("./classes/breakfast");
 
@@ -29,4 +30,9 @@ app.get("/dinner/:order", (req, res) => {
     res.send(`here is your order: ${order}`);
 });
 
-app.listen(port, () => console.log("Server is running!"));
+app.listen(PORT, () => {
+    console.log(`Server is running on http://127.0.0.1:${PORT}/`);
+
+    //opens the url in the default browser 
+    open("http://127.0.0.1:3000/");
+});
