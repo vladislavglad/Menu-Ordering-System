@@ -1,4 +1,7 @@
 class Meal {
+
+    static DEFAULT_DRINK = "Water";
+
     constructor(menu, encodedOrder) {
         this.menu = menu;
 
@@ -74,9 +77,9 @@ class Meal {
             str += `${item}${ammount > 1 ? `(${ammount}), ` : ", "}`;
         }
 
-        // If no drink, add water to the order.
+        // If no drink, add default drink to the order.
         if (!this.hasDrink())
-            return str += "Water";
+            return str += Meal.DEFAULT_DRINK;
 
         // remove last ", "
         return str.substring(0, str.length-2);
