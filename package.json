@@ -1,0 +1,27 @@
+{
+  "name": "menu-ordering-system",
+  "version": "1.0.0",
+  "description": "system that takes and validates orders placed",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladislavglad/Menu-Ordering-System.git"
+  },
+  "keywords": [
+    "menu",
+    "ordering",
+    "system"
+  ],
+  "author": "Vladislav Gladyshev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vladislavglad/Menu-Ordering-System/issues"
+  },
+  "homepage": "https://github.com/vladislavglad/Menu-Ordering-System#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
