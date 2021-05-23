@@ -10,37 +10,37 @@ const Lunch = require("./classes/lunch");
 const Dinner = require("./classes/dinner");
 
 app.get("/", (req, res) => {
-    res.send(`Place your order with something like: ${URL}/breakfast/1,2,3`);
+    res.send({message: `Place your order with something like: ${URL}/breakfast/1,2,3`});
 });
 
 app.get("/breakfast", (req, res) => {
-    res.send(`Provide arguments such as ${URL}/breakfast/1,2,3`);
+    res.send({error:`Provide arguments such as ${URL}/breakfast/1,2,3`});
 });
 
 app.get("/breakfast/:order", (req, res) => {
     let breakfastOrder = new Breakfast(req.params.order);
-    console.log(`got breakfast order: ${breakfastOrder}`);
-    res.send(breakfastOrder.toString());
+    // console.log(`got breakfast order: ${breakfastOrder}`);
+    res.send({output: breakfastOrder.toString()});
 });
 
 app.get("/lunch", (req, res) => {
-    res.send(`Provide arguments such as ${URL}/lunch/1,2,3`);
+    res.send({error: `Provide arguments such as ${URL}/lunch/1,2,3`});
 });
 
 app.get("/lunch/:order", (req, res) => {
     let lunchOrder = new Lunch(req.params.order);
-    console.log(`got lunch order: ${lunchOrder}`);
-    res.send(lunchOrder.toString());
+    // console.log(`got lunch order: ${lunchOrder}`);
+    res.send({output: lunchOrder.toString()});
 });
 
 app.get("/dinner", (req, res) => {
-    res.send(`Provide arguments such as ${URL}/dinner/1,2,3,4`);
+    res.send({error: `Provide arguments such as ${URL}/dinner/1,2,3,4`});
 });
 
 app.get("/dinner/:order", (req, res) => {
     let dinnerOrder = new Dinner(req.params.order);
-    console.log(`got dinner order: ${dinnerOrder}`);
-    res.send(dinnerOrder.toString());
+    // console.log(`got dinner order: ${dinnerOrder}`);
+    res.send({output: dinnerOrder.toString()});
 });
 
 app.listen(PORT, () => {
