@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+const Breakfast = require("./classes/breakfast");
+
 app.get("/", (req, res) => {
     res.send("Place your order");
 })
@@ -10,9 +12,9 @@ app.get("/breakfast/:order", (req, res) => {
     /* Note: "order" is of type string.
     Plan: design a class that accepts a string
     that represents an order and then validates it. */
-    const {order} = req.params;
-    console.log(`got breakfast order: ${order}`);
-    res.send(`here is your order: ${order}`);
+    let breakfastOrder = new Breakfast(req.params.order);
+    console.log(`got breakfast order: ${breakfastOrder}`);
+    res.send(`here is your order: ${breakfastOrder.toString()}`);
 });
 
 app.get("/lunch/:order", (req, res) => {

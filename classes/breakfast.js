@@ -30,5 +30,7 @@ class Breakfast {
     }
 }
 
-let b = new Breakfast("123");
-console.log(b);
+// let b = new Breakfast("123");
+// console.log(b);
+
+module.exports = Breakfast;
