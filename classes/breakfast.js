@@ -4,12 +4,30 @@ class Breakfast {
     static ITEM_TWO = "Toast";
     static ITEM_THREE = "Coffee";
 
-    constructor(order) {
-        this.order = [];
+    constructor(encodedOrder) {
 
-        for (const itemCode of order) {
-            this.order.push(this.decodeItem(itemCode));
+        // Encoded order is in comma separated format
+        // Ex: 3,2,1
+        // Spliting would give us an array such as ["3","2","1"]
+        this.encodedItems = encodedOrder.split(",");
+
+        // We need to return items in the set order: meal, side, drink
+        // Sorting an array ensures this property!
+        this.encodedItems.sort();
+    
+        // We are using map to keep track of ammount of any particular item ordered.
+        this.orderItems = new Map();
+
+        for (const itemCode of this.encodedItems) {
+            const item = this.decodeItem(itemCode);
+
+            if (this.orderItems.has(item)) {
+                this.orderItems.set(item, this.orderItems.get(item) + 1);
+            } else {
+                this.orderItems.set(item, 1);
+            }
         }
+
     }
 
     decodeItem(itemCode) {
@@ -25,12 +43,18 @@ class Breakfast {
         }
     }
 
+    validate() {
+
+    }
+
     toString() {
-        return JSON.stringify(this.order);
+        let str = "";
+        for (const [item, ammount] of this.orderItems) {
+            str += `${item}${ammount > 1 ? `(${ammount}), ` : ", "}`;
+        }
+
+        return str.substring(0, str.length-2);
     }
 }
-
-// let b = new Breakfast("123");
-// console.log(b);
 
 module.exports = Breakfast;
