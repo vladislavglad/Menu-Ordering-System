@@ -14,7 +14,7 @@ app.get("/breakfast/:order", (req, res) => {
     that represents an order and then validates it. */
     let breakfastOrder = new Breakfast(req.params.order);
     console.log(`got breakfast order: ${breakfastOrder}`);
-    res.send(`here is your order: ${breakfastOrder.toString()}`);
+    res.send(breakfastOrder.toString());
 });
 
 app.get("/lunch/:order", (req, res) => {

@@ -9,16 +9,16 @@ class Breakfast {
         // Encoded order is in comma separated format
         // Ex: 3,2,1
         // Spliting would give us an array such as ["3","2","1"]
-        this.encodedItems = encodedOrder.split(",");
+        let encodedItems = encodedOrder.split(",");
 
         // We need to return items in the set order: meal, side, drink
         // Sorting an array ensures this property!
-        this.encodedItems.sort();
+        encodedItems.sort();
     
         // We are using map to keep track of ammount of any particular item ordered.
         this.orderItems = new Map();
 
-        for (const itemCode of this.encodedItems) {
+        for (const itemCode of encodedItems) {
             const item = this.decodeItem(itemCode);
 
             if (this.orderItems.has(item)) {
@@ -43,11 +43,25 @@ class Breakfast {
         }
     }
 
+    hasMain() {
+        return this.orderItems.has(Breakfast.ITEM_ONE);
+    }
+
+    hasSide() {
+        return this.orderItems.has(Breakfast.ITEM_TWO);
+    }
+
     validate() {
 
     }
 
     toString() {
+        if (!this.hasMain())
+            return "Unable to process: Main is missing";
+        
+        if (!this.hasSide())
+            return "Unable to process: Side is missing";
+
         let str = "";
         for (const [item, ammount] of this.orderItems) {
             str += `${item}${ammount > 1 ? `(${ammount}), ` : ", "}`;
