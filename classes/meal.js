@@ -38,24 +38,36 @@ class Meal {
         return this.orderItems.has(this.menu["3"]);
     }
 
-    hasOnlyOneMain() {
-        return this.orderItems.get(this.menu["1"]) === 1;
+    hasMultipleMains() {
+        return this.orderItems.get(this.menu["1"]) > 1;
     }
 
-    hasOnlyOneSide() {
-        return this.orderItems.get(this.menu["2"]) === 1; 
+    hasMultipleSides() {
+        return this.orderItems.get(this.menu["2"]) > 1; 
     }
 
-    toString() {
+    hasMultipleDrinks() {
+        return this.orderItems.get(this.menu["3"]) > 1;
+    }
+
+    generalValidate() {
+        let errors = [];
 
         // Ensure that main is selected.
         if (!this.hasMain())
-            return "Unable to process: Main is missing";
+            errors.push("Main is missing");
         
         // Ensure that side is selected.
         if (!this.hasSide())
-            return "Unable to process: Side is missing";
+            errors.push("Side is missing");
 
+        return errors;
+    }
+
+    representAsStr(errors) {
+        if (errors.length) 
+            return "Unable to process: " + errors.join(", ");
+        
         // Build out our string with order.
         let str = "";
         for (const [item, ammount] of this.orderItems) {
@@ -66,6 +78,7 @@ class Meal {
         if (!this.hasDrink())
             return str += "Water";
 
+        // remove last ", "
         return str.substring(0, str.length-2);
     }
 }
