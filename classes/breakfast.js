@@ -51,14 +51,21 @@ class Breakfast {
         return this.orderItems.has(Breakfast.ITEM_TWO);
     }
 
+    hasDrink() {
+        return this.orderItems.has(Breakfast.ITEM_THREE);
+    }
+
     validate() {
 
     }
 
     toString() {
+
+        // Ensure that main is selected.
         if (!this.hasMain())
             return "Unable to process: Main is missing";
         
+        // Ensure that side is selected.
         if (!this.hasSide())
             return "Unable to process: Side is missing";
 
@@ -66,6 +73,10 @@ class Breakfast {
         for (const [item, ammount] of this.orderItems) {
             str += `${item}${ammount > 1 ? `(${ammount}), ` : ", "}`;
         }
+
+        // If no drink, add water to the order.
+        if (!this.hasDrink())
+            return str += "Water";
 
         return str.substring(0, str.length-2);
     }
