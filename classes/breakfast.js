@@ -55,6 +55,14 @@ class Breakfast {
         return this.orderItems.has(Breakfast.ITEM_THREE);
     }
 
+    hasOnlyOneMain() {
+        return this.orderItems.get(Breakfast.ITEM_ONE) === 1;
+    }
+
+    hasOnlyOneSide() {
+        return this.orderItems.get(Breakfast.ITEM_TWO) === 1; 
+    }
+
     validate() {
 
     }
@@ -69,6 +77,17 @@ class Breakfast {
         if (!this.hasSide())
             return "Unable to process: Side is missing";
 
+        // Ensure that only one main is selected.
+        if (!this.hasOnlyOneMain()) {
+            return `Unable to process: ${Breakfast.ITEM_ONE} cannot be ordered more than once`;
+        }
+
+        // Ensure that only one side is selected.
+        if (!this.hasOnlyOneSide()) {
+            return `Unable to process: ${Breakfast.ITEM_TWO} cannot be ordered more than once`;
+        }
+
+        // Build out our string with order.
         let str = "";
         for (const [item, ammount] of this.orderItems) {
             str += `${item}${ammount > 1 ? `(${ammount}), ` : ", "}`;
