@@ -1,7 +1,15 @@
+/**
+ * Common class that does heavy lifting.
+ * Decodes food items based on the menu provided.
+ * Does general validation of order.
+ * Converts order to a string.
+ */
 class Meal {
 
     static DEFAULT_DRINK = "Water";
 
+    // Extending classes provide menu objects 
+    // that is used to decode menu items.
     constructor(menu, encodedOrder) {
         this.menu = menu;
 
@@ -15,8 +23,10 @@ class Meal {
         encodedItems.sort();
     
         // We are using map to keep track of ammount of any particular item ordered.
+        // It is also great for fast lookups of items.
         this.orderItems = new Map();
 
+        // Populate our map with items and their ammounts.
         for (const itemCode of encodedItems) {
             const item = this.menu[itemCode];
 
@@ -29,6 +39,7 @@ class Meal {
 
     }
 
+    // Following methods are used for validation purposes.
     hasMain() {
         return this.orderItems.has(this.menu["1"]);
     }
@@ -53,6 +64,7 @@ class Meal {
         return this.orderItems.get(this.menu["3"]) > 1;
     }
 
+    // General validation that is consistent with every order.
     generalValidate() {
         let errors = [];
 
@@ -67,7 +79,11 @@ class Meal {
         return errors;
     }
 
+    // Converts a map to a string.
+    // If some validation checks have failed, returns error message.
     representAsStr(errors) {
+
+        // If there are errors.
         if (errors.length) 
             return "Unable to process: " + errors.join(", ");
         

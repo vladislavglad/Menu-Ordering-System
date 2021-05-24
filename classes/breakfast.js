@@ -1,5 +1,9 @@
 const Meal = require("./meal");
 
+/**
+ * Objects of this class represent a breakfast order
+ * with its appropriate constraints.
+ */
 class Breakfast extends Meal {
 
     static MENU_ITEMS = {
@@ -8,10 +12,12 @@ class Breakfast extends Meal {
         3 : "Coffee"
     };
 
+    // Super class does all the heavy lifting!
     constructor(encodedOrder) {
         super(Breakfast.MENU_ITEMS, encodedOrder);
     }
 
+    // Validation specific to "Breakfast" order.
     validate() {
         let errors = super.generalValidate();
 
@@ -29,8 +35,5 @@ class Breakfast extends Meal {
     }
 
 }
-
-// let o = new Breakfast("1,2,3");
-// console.log(o.toString());
 
 module.exports = Breakfast;

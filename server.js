@@ -1,9 +1,9 @@
 const express = require("express");
 const open = require("open");
-const app = express();
 
 const PORT = 3000;
 const URL = `http://127.0.0.1:${PORT}`;
+const app = express();
 
 const Breakfast = require("./classes/breakfast");
 const Lunch = require("./classes/lunch");
